@@ -1,0 +1,16 @@
+**/.sass-cache
+**/*.log
+spike.py
+**/*.pyc
+**/.idea/
+**/out/
+**/build/
+**/*.iml
+**/.gradle/
+**/.DS_Store
+**/war/
+.gradle
+**/gradlew.bat
+**/gradlew
+**/gradle/
+**/classes/
