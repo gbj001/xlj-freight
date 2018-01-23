@@ -10,5 +10,3 @@ CREATE TABLE `tb_order` (
   PRIMARY KEY (`id`),
   UNIQUE INDEX (`name`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='测试用户';
-
-CREATE TABLE `tb_`
