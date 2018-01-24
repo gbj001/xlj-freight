@@ -1,11 +1,7 @@
 apply plugin: 'war'
 
-description = """"""
-
 sourceCompatibility = 1.8
 targetCompatibility = 1.8
-
-
 
 repositories {
         
@@ -51,14 +47,3 @@ exclude(module: 'c3p0')
     testCompile group: 'org.springframework', name: 'spring-test', version:'4.3.12.RELEASE'
     providedCompile group: 'javax.servlet', name: 'javax.servlet-api', version:'3.1.0'
 }
-
-//war {
-//    archiveName "xlj-freight.war"
-//    destinationDir = file("war")
-//}
-
-//task renameWar {
-//    doLast {
-//        file("${project.projectDir.getPath()}/war/xlj-freight.war").renameTo(file("${project.projectDir.getPath()}/war/ROOT.war"))
-//    }
-//}
