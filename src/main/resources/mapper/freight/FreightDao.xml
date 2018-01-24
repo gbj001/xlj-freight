@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="cn.xlj.modules.freight.dao.FreightDao">
+
+	<!-- 可根据自己的需求，是否要使用 -->
+    <resultMap type="cn.xlj.modules.freight.entity.FreightEntity" id="freightMap">
+        <result property="id" column="id"/>
+        <result property="requestId" column="request_id"/>
+        <result property="productSku" column="product_sku"/>
+        <result property="productName" column="product_name"/>
+        <result property="productWeight" column="product_weight"/>
+        <result property="productLength" column="product_length"/>
+        <result property="productWidth" column="product_width"/>
+        <result property="productHeight" column="product_height"/>
+        <result property="fromProvince" column="from_province"/>
+        <result property="fromCity" column="from_city"/>
+        <result property="fromArea" column="from_area"/>
+        <result property="toProvince" column="to_province"/>
+        <result property="toCity" column="to_city"/>
+        <result property="toArea" column="to_area"/>
+        <result property="address" column="address"/>
+        <result property="expectFee" column="expect_fee"/>
+        <result property="actualFee" column="actual_fee"/>
+        <result property="createUser" column="create_user"/>
+        <result property="createTime" column="create_time"/>
+        <result property="updateUser" column="update_user"/>
+        <result property="updateTime" column="update_time"/>
+    </resultMap>
+
+	<select id="queryObject" resultType="cn.xlj.modules.freight.entity.FreightEntity">
+		select * from tb_freight where id = #{value}
+	</select>
+
+	<select id="queryList" resultType="cn.xlj.modules.freight.entity.FreightEntity">
+		select * from tb_freight
+        <choose>
+            <when test="sidx != null and sidx.trim() != ''">
+                order by ${sidx} ${order}
+            </when>
+			<otherwise>
+                order by id desc
+			</otherwise>
+        </choose>
+		<if test="offset != null and limit != null">
+			limit #{offset}, #{limit}
+		</if>
+	</select>
+	
+ 	<select id="queryTotal" resultType="int">
+		select count(*) from tb_freight 
+	</select>
+	 
+	<insert id="save" parameterType="cn.xlj.modules.freight.entity.FreightEntity" useGeneratedKeys="true" keyProperty="id">
+		insert into tb_freight
+		(
+			`request_id`, 
+			`product_sku`, 
+			`product_name`, 
+			`product_weight`, 
+			`product_length`, 
+			`product_width`, 
+			`product_height`, 
+			`from_province`, 
+			`from_city`, 
+			`from_area`, 
+			`to_province`, 
+			`to_city`, 
+			`to_area`, 
+			`address`, 
+			`expect_fee`, 
+			`actual_fee`, 
+			`create_user`, 
+			`create_time`, 
+			`update_user`, 
+			`update_time`
+		)
+		values
+		(
+			#{requestId}, 
+			#{productSku}, 
+			#{productName}, 
+			#{productWeight}, 
+			#{productLength}, 
+			#{productWidth}, 
+			#{productHeight}, 
+			#{fromProvince}, 
+			#{fromCity}, 
+			#{fromArea}, 
+			#{toProvince}, 
+			#{toCity}, 
+			#{toArea}, 
+			#{address}, 
+			#{expectFee}, 
+			#{actualFee}, 
+			'system',
+			now(),
+			#{updateUser}, 
+			#{updateTime}
+		)
+	</insert>
+	 
+	<update id="update" parameterType="cn.xlj.modules.freight.entity.FreightEntity">
+		update tb_freight 
+		<set>
+			<if test="requestId != null">`request_id` = #{requestId}, </if>
+			<if test="productSku != null">`product_sku` = #{productSku}, </if>
+			<if test="productName != null">`product_name` = #{productName}, </if>
+			<if test="productWeight != null">`product_weight` = #{productWeight}, </if>
+			<if test="productLength != null">`product_length` = #{productLength}, </if>
+			<if test="productWidth != null">`product_width` = #{productWidth}, </if>
+			<if test="productHeight != null">`product_height` = #{productHeight}, </if>
+			<if test="fromProvince != null">`from_province` = #{fromProvince}, </if>
+			<if test="fromCity != null">`from_city` = #{fromCity}, </if>
+			<if test="fromArea != null">`from_area` = #{fromArea}, </if>
+			<if test="toProvince != null">`to_province` = #{toProvince}, </if>
+			<if test="toCity != null">`to_city` = #{toCity}, </if>
+			<if test="toArea != null">`to_area` = #{toArea}, </if>
+			<if test="address != null">`address` = #{address}, </if>
+			<if test="expectFee != null">`expect_fee` = #{expectFee}, </if>
+			<if test="actualFee != null">`actual_fee` = #{actualFee}, </if>
+			<if test="updateUser != null">`update_user` = #{updateUser}, </if>
+			<if test="updateTime != null">`update_time` = #{updateTime}</if>
+		</set>
+		where id = #{id}
+	</update>
+	
+	<delete id="delete">
+		delete from tb_freight where id = #{value}
+	</delete>
+	
+	<delete id="deleteBatch">
+		delete from tb_freight where id in 
+		<foreach item="id" collection="array" open="(" separator="," close=")">
+			#{id}
+		</foreach>
+	</delete>
+
+</mapper>

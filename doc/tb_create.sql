@@ -1,12 +1,26 @@
--- 测试用户
-CREATE TABLE `tb_order` (
+-- 运费表
+CREATE TABLE `tb_freight` (
   `id` bigint NOT NULL AUTO_INCREMENT,
-  `name` varchar(50) NOT NULL COMMENT '运费情况',
-  `remark` varchar(100) COMMENT '备注',
+  `request_id` varchar(20) NOT NULL COMMENT '请求ID',
+  `product_sku` varchar(20) COMMENT '商品sku',
+  `product_name` varchar(50) COMMENT '商品名称',
+  `product_weight` bigint(20) COMMENT '商品重量（克）',
+  `product_length` varchar(50) COMMENT '商品长度',
+  `product_width` varchar(50) COMMENT '商品宽度',
+  `product_height` varchar(50) COMMENT '商品高度',
+  `from_province` varchar(10) COMMENT '运输开始省份',
+  `from_city` varchar(50) COMMENT '运输开始城市',
+  `from_area` varchar(50) COMMENT '运输开始区县',
+  `to_province` varchar(50) COMMENT '运输到达省份',
+  `to_city` varchar(50) COMMENT '运输到达城市',
+  `to_area` varchar(50) COMMENT '运输到达区县',
+  `address` varchar(50) COMMENT '运输到达详细地址',
+  `expect_fee` double(10,2) COMMENT '系统计算运费',
+  `actual_fee` double(10,2) COMMENT '实际运费',
+  `create_user` varchar(50) NOT NULL DEFAULT 'system' COMMENT '创建人',
   `create_time` datetime COMMENT '创建时间',
-  `create_user` varchar(50) NOT NULL COMMENT '创建人',
+  `update_user` varchar(50) COMMENT '修改人',
   `update_time` datetime COMMENT '修改时间',
-  `update_user` varchar(50) NOT NULL COMMENT '修改人',
   PRIMARY KEY (`id`),
-  UNIQUE INDEX (`name`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='测试用户';
+  UNIQUE INDEX (`product_sku`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='运费数据表';
