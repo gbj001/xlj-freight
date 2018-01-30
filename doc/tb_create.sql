@@ -1,26 +1,45 @@
 -- 运费表
 CREATE TABLE `tb_freight` (
   `id` bigint NOT NULL AUTO_INCREMENT,
-  `request_id` varchar(20) NOT NULL COMMENT '请求ID',
-  `product_sku` varchar(20) COMMENT '商品sku',
-  `product_name` varchar(50) COMMENT '商品名称',
-  `product_weight` bigint(20) COMMENT '商品重量（克）',
-  `product_length` varchar(50) COMMENT '商品长度',
-  `product_width` varchar(50) COMMENT '商品宽度',
-  `product_height` varchar(50) COMMENT '商品高度',
-  `from_province` varchar(10) COMMENT '运输开始省份',
-  `from_city` varchar(50) COMMENT '运输开始城市',
-  `from_area` varchar(50) COMMENT '运输开始区县',
-  `to_province` varchar(50) COMMENT '运输到达省份',
-  `to_city` varchar(50) COMMENT '运输到达城市',
-  `to_area` varchar(50) COMMENT '运输到达区县',
-  `address` varchar(50) COMMENT '运输到达详细地址',
-  `expect_fee` double(10,2) COMMENT '系统计算运费',
-  `actual_fee` double(10,2) COMMENT '实际运费',
-  `create_user` varchar(50) NOT NULL DEFAULT 'system' COMMENT '创建人',
-  `create_time` datetime COMMENT '创建时间',
-  `update_user` varchar(50) COMMENT '修改人',
-  `update_time` datetime COMMENT '修改时间',
+  `request_id` VARCHAR(20) NOT NULL COMMENT '请求ID',
+  `from_province` VARCHAR(10) COMMENT '运输开始省份',
+  `from_city` VARCHAR(50) COMMENT '运输开始城市',
+  `from_area` VARCHAR(50) COMMENT '运输开始区县',
+  `to_province` VARCHAR(50) COMMENT '运输到达省份',
+  `to_city` VARCHAR(50) COMMENT '运输到达城市',
+  `to_area` VARCHAR(50) COMMENT '运输到达区县',
+  `address` VARCHAR(50) COMMENT '运输到达详细地址',
+  `expect_fee` DOUBLE(10,2) COMMENT '系统计算运费',
+  `actual_fee` DOUBLE(10,2) COMMENT '实际运费',
+  `create_user` VARCHAR(50) NOT NULL DEFAULT 'system' COMMENT '创建人',
+  `create_time` DATETIME COMMENT '创建时间',
+  `update_user` VARCHAR(50) COMMENT '修改人',
+  `update_time` DATETIME COMMENT '修改时间',
   PRIMARY KEY (`id`),
-  UNIQUE INDEX (`product_sku`)
+  UNIQUE `request_id_uq` (`request_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='运费数据表';
+
+
+-- 运费表明细
+CREATE TABLE `tb_freight_detail` (
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `freight_id` bigint NOT NULL COMMENT '运费表ID',
+  `sku` VARCHAR(20) COMMENT '商品sku',
+  `is_gift` SMALLINT(1) COMMENT '是否赠品' DEFAULT 0,
+  `name` VARCHAR(50) COMMENT '商品名称',
+  `unit_price` DOUBLE(10,2) COMMENT '商品单价',
+  `number` INT(10) COMMENT '商品数量',
+  `weight` INT(50) COMMENT '单个商品重量',
+  `width` VARCHAR(50) COMMENT '商品宽度',
+  `length` VARCHAR(50) COMMENT '商品长度',
+  `height` VARCHAR(50) COMMENT '商品高度',
+  `create_user` VARCHAR(50) NOT NULL DEFAULT 'system' COMMENT '创建人',
+  `create_time` DATETIME COMMENT '创建时间',
+  `update_user` VARCHAR(50) COMMENT '修改人',
+  `update_time` DATETIME COMMENT '修改时间',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='运费数据明细表';
+
+
+
+

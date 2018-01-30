@@ -1,6 +1,7 @@
 package cn.xlj.modules.freight.controller;
 
 import cn.xlj.common.utils.R;
+import cn.xlj.modules.freight.dto.FreightDto;
 import cn.xlj.modules.freight.entity.FreightEntity;
 import cn.xlj.modules.freight.service.FreightService;
 import org.apache.commons.lang.StringUtils;
@@ -29,28 +30,31 @@ public class CalculateFreightController {
      */
     @RequestMapping(value = "/calculate/freight-fee", method = RequestMethod.POST)
     @ResponseBody
-    public R calculateFreightFee(@RequestBody FreightEntity freightEntity) {
-        System.out.println(freightEntity.toString());
+    public R calculateFreightFee(@RequestBody FreightDto freightDto) {
         Map map = new HashMap();
         //1、接受数据插入运费表
-        freightService.save(freightEntity);
+        freightService.save(freightDto);
 
-        //2、根据规则计算出运费更新运费表
-        String fee = null;
+        //2、根据规则计算出运费更新运费表(暂时随机)
+        double fee = freightService.calculateFee(100);
+
 
         //3、返回结果
 
-        if(StringUtils.isEmpty(fee)){
+        if(fee < 50){
             map.put("message", "无法计算出运费");
             map.put("successful", false);
             map.put("code", "400");
             map.put("freight_fee",null);
         }
         else{
+            FreightEntity freightEntity = freightService.queryByRequestId(freightDto.getRequestId());
+            freightEntity.setExpectFee(fee);
+            freightService.update(freightEntity);
             map.put("message", "success");
             map.put("successful", true);
             map.put("code", "000");
-            map.put("freight_fee",500.00);
+            map.put("freight_fee",fee);
         }
 
 

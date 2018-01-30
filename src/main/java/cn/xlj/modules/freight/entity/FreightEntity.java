@@ -1,5 +1,7 @@
 package cn.xlj.modules.freight.entity;
 
+import cn.xlj.modules.freight.dto.FreightDto;
+
 import java.io.Serializable;
 import java.util.Date;
 
@@ -19,18 +21,6 @@ public class FreightEntity implements Serializable {
 	private Long id;
 	//请求ID
 	private String requestId;
-	//商品sku
-	private String productSku;
-	//商品名称
-	private String productName;
-	//商品重量（克）
-	private Long productWeight;
-	//商品长度
-	private String productLength;
-	//商品宽度
-	private String productWidth;
-	//商品高度
-	private String productHeight;
 	//运输开始省份
 	private String fromProvince;
 	//运输开始城市
@@ -81,78 +71,6 @@ public class FreightEntity implements Serializable {
 	 */
 	public String getRequestId() {
 		return requestId;
-	}
-	/**
-	 * 设置：商品sku
-	 */
-	public void setProductSku(String productSku) {
-		this.productSku = productSku;
-	}
-	/**
-	 * 获取：商品sku
-	 */
-	public String getProductSku() {
-		return productSku;
-	}
-	/**
-	 * 设置：商品名称
-	 */
-	public void setProductName(String productName) {
-		this.productName = productName;
-	}
-	/**
-	 * 获取：商品名称
-	 */
-	public String getProductName() {
-		return productName;
-	}
-	/**
-	 * 设置：商品重量（克）
-	 */
-	public void setProductWeight(Long productWeight) {
-		this.productWeight = productWeight;
-	}
-	/**
-	 * 获取：商品重量（克）
-	 */
-	public Long getProductWeight() {
-		return productWeight;
-	}
-	/**
-	 * 设置：商品长度
-	 */
-	public void setProductLength(String productLength) {
-		this.productLength = productLength;
-	}
-	/**
-	 * 获取：商品长度
-	 */
-	public String getProductLength() {
-		return productLength;
-	}
-	/**
-	 * 设置：商品宽度
-	 */
-	public void setProductWidth(String productWidth) {
-		this.productWidth = productWidth;
-	}
-	/**
-	 * 获取：商品宽度
-	 */
-	public String getProductWidth() {
-		return productWidth;
-	}
-	/**
-	 * 设置：商品高度
-	 */
-	public void setProductHeight(String productHeight) {
-		this.productHeight = productHeight;
-	}
-	/**
-	 * 获取：商品高度
-	 */
-	public String getProductHeight() {
-		return productHeight;
 	}
 	/**
 	 * 设置：运输开始省份
@@ -311,17 +229,28 @@ public class FreightEntity implements Serializable {
 		return updateTime;
 	}
 
+	public FreightEntity(){
+
+	}
+
+
+	public FreightEntity(FreightDto freightDto){
+		this.requestId = freightDto.getRequestId();
+		this.fromProvince = freightDto.getFromProvince();
+		this.fromCity = freightDto.getFromCity();
+		this.fromArea = freightDto.getFromArea();
+		this.toProvince = freightDto.getToProvince();
+		this.toCity = freightDto.getToCity();
+		this.toArea = freightDto.getToArea();
+		this.address = freightDto.getAddress();
+		this.createTime = new Date();
+	}
+
 	@Override
 	public String toString() {
 		return "FreightEntity{" +
 				"id=" + id +
 				", requestId='" + requestId + '\'' +
-				", productSku='" + productSku + '\'' +
-				", productName='" + productName + '\'' +
-				", productWeight=" + productWeight +
-				", productLength='" + productLength + '\'' +
-				", productWidth='" + productWidth + '\'' +
-				", productHeight='" + productHeight + '\'' +
 				", fromProvince='" + fromProvince + '\'' +
 				", fromCity='" + fromCity + '\'' +
 				", fromArea='" + fromArea + '\'' +

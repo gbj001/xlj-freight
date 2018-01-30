@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="cn.xlj.modules.freight.dao.FreightDetailDao">
+
+	<!-- 可根据自己的需求，是否要使用 -->
+    <resultMap type="cn.xlj.modules.freight.entity.FreightDetailEntity" id="freightDetailMap">
+        <result property="id" column="id"/>
+        <result property="freightId" column="freight_id"/>
+        <result property="sku" column="sku"/>
+        <result property="isGift" column="is_gift"/>
+        <result property="name" column="name"/>
+        <result property="unitPrice" column="unit_price"/>
+        <result property="number" column="number"/>
+        <result property="weight" column="weight"/>
+        <result property="length" column="length"/>
+        <result property="width" column="width"/>
+        <result property="height" column="height"/>
+        <result property="createUser" column="create_user"/>
+        <result property="createTime" column="create_time"/>
+        <result property="updateUser" column="update_user"/>
+        <result property="updateTime" column="update_time"/>
+    </resultMap>
+
+	<select id="queryObject" resultType="cn.xlj.modules.freight.entity.FreightDetailEntity">
+		select * from tb_freight_detail where id = #{value}
+	</select>
+
+	<select id="queryListByFreightId" parameterType="string" resultType="cn.xlj.modules.freight.entity.FreightDetailEntity">
+		select * from tb_freight_detail
+       	where freight_id = #{freightId}
+	</select>
+	
+ 	<select id="queryTotal" resultType="int">
+		select count(*) from tb_freight_detail
+	</select>
+	 
+	<insert id="save" parameterType="cn.xlj.modules.freight.entity.FreightDetailEntity" useGeneratedKeys="true" keyProperty="id">
+		insert into tb_freight_detail
+		(
+			`freight_id`,
+			`sku`,
+			`is_gift`,
+			`name`,
+			`unit_price`,
+			`number`,
+			`weight`,
+			`length`,
+			`width`,
+			`height`,
+			`create_user`,
+			`create_time`, 
+			`update_user`, 
+			`update_time`
+		)
+		values
+		(
+			#{freightId},
+			#{sku},
+			#{isGift},
+			#{name},
+			#{unitPrice},
+			#{number},
+			#{weight},
+			#{length},
+			#{width},
+			#{height},
+			'system',
+			now(),
+			#{updateUser}, 
+			#{updateTime}
+		)
+	</insert>
+	
+</mapper>
