@@ -1,9 +1,7 @@
 package io.renren;
 
-import cn.xlj.common.utils.RedisUtils;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
@@ -17,12 +15,6 @@ public class RedisTest {
     @Test
     public void test(){
         Random ran1 = new Random(100);
-
-
-        System.out.println(ran1.nextInt(100));
-        System.out.println(ran1.nextInt(100));
-        System.out.println(ran1.nextInt(100));
-        System.out.println(ran1.nextInt(100));
         System.out.println(ran1.nextInt(100));
         System.out.println(ran1.nextInt(100));
     }

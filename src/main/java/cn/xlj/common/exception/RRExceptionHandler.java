@@ -26,7 +26,7 @@ public class RRExceptionHandler {
 	public R handleRRException(RRException e){
 		R r = new R();
 		r.put("code", e.getCode());
-		r.put("msg", e.getMessage());
+		r.put("message", e.getMessage());
 
 		return r;
 	}
@@ -40,7 +40,7 @@ public class RRExceptionHandler {
 	@ExceptionHandler(AuthorizationException.class)
 	public R handleAuthorizationException(AuthorizationException e){
 		logger.error(e.getMessage(), e);
-		return R.error("没有运费，请联系管理员授权");
+		return R.error("发生错误，请联系管理员");
 	}
 
 	@ExceptionHandler(Exception.class)
