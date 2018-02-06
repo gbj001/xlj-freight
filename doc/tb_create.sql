@@ -2,9 +2,9 @@
 CREATE TABLE `tb_freight` (
   `id` bigint NOT NULL AUTO_INCREMENT,
   `request_id` VARCHAR(20) NOT NULL COMMENT '请求ID',
-  `from_province` VARCHAR(10) COMMENT '运输开始省份',
-  `from_city` VARCHAR(50) COMMENT '运输开始城市',
-  `from_area` VARCHAR(50) COMMENT '运输开始区县',
+  `customer_type` CHAR(2) COMMENT '客户类型',
+  `warehouse_code` VARCHAR(10) COMMENT '发货仓编码',
+  `warehouse_name` VARCHAR(50) COMMENT '发货仓名称',
   `to_province` VARCHAR(50) COMMENT '运输到达省份',
   `to_city` VARCHAR(50) COMMENT '运输到达城市',
   `to_area` VARCHAR(50) COMMENT '运输到达区县',

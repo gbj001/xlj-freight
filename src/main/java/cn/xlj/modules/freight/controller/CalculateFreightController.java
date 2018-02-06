@@ -4,7 +4,6 @@ import cn.xlj.common.utils.R;
 import cn.xlj.modules.freight.dto.FreightDto;
 import cn.xlj.modules.freight.entity.FreightEntity;
 import cn.xlj.modules.freight.service.FreightService;
-import org.apache.commons.lang.StringUtils;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -30,7 +29,7 @@ public class CalculateFreightController {
      */
     @RequestMapping(value = "/calculate/freight-fee", method = RequestMethod.POST)
     @ResponseBody
-    public R calculateFreightFee(@RequestBody FreightDto freightDto) {
+    public R calculateFreightFee(@RequestBody FreightDto freightDto){
         Map map = new HashMap();
         //1、接受数据插入运费表
         freightService.save(freightDto);

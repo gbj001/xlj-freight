@@ -21,12 +21,12 @@ public class FreightEntity implements Serializable {
 	private Long id;
 	//请求ID
 	private String requestId;
-	//运输开始省份
-	private String fromProvince;
+	//客户类型（1-直销 2-渠道）
+	private String customerType;
 	//运输开始城市
-	private String fromCity;
+	private String warehouseCode;
 	//运输开始区县
-	private String fromArea;
+	private String warehouseName;
 	//运输到达省份
 	private String toProvince;
 	//运输到达城市
@@ -73,44 +73,41 @@ public class FreightEntity implements Serializable {
 		return requestId;
 	}
 	/**
-	 * 设置：运输开始省份
+	 * 获取：客户类型
 	 */
-	public void setFromProvince(String fromProvince) {
-		this.fromProvince = fromProvince;
+	public String getCustomerType() {
+		return customerType;
 	}
 	/**
-	 * 获取：运输开始省份
+	 * 设置：客户类型
 	 */
-	public String getFromProvince() {
-		return fromProvince;
+	public void setCustomerType(String customerType) {
+		this.customerType = customerType;
 	}
 	/**
-	 * 设置：运输开始城市
+	 * 获取：发货仓编码
 	 */
-	public void setFromCity(String fromCity) {
-		this.fromCity = fromCity;
+	public String getWarehouseCode() {
+		return warehouseCode;
 	}
 	/**
-	 * 获取：运输开始城市
+	 * 设置：发货仓编码
 	 */
-	public String getFromCity() {
-		return fromCity;
+	public void setWarehouseCode(String warehouseCode) {
+		this.warehouseCode = warehouseCode;
 	}
 	/**
-	 * 设置：运输开始区县
+	 * ：获取：发货仓名称
 	 */
-	public void setFromArea(String fromArea) {
-		this.fromArea = fromArea;
+	public String getWarehouseName() {
+		return warehouseName;
 	}
 	/**
-	 * 获取：运输开始区县
+	 * ：设置：发货仓名称
 	 */
-	public String getFromArea() {
-		return fromArea;
+	public void setWarehouseName(String warehouseName) {
+		this.warehouseName = warehouseName;
 	}
-	/**
-	 * 设置：运输到达省份
-	 */
 	public void setToProvince(String toProvince) {
 		this.toProvince = toProvince;
 	}
@@ -236,9 +233,9 @@ public class FreightEntity implements Serializable {
 
 	public FreightEntity(FreightDto freightDto){
 		this.requestId = freightDto.getRequestId();
-		this.fromProvince = freightDto.getFromProvince();
-		this.fromCity = freightDto.getFromCity();
-		this.fromArea = freightDto.getFromArea();
+		this.customerType = freightDto.getCustomerType();
+		this.warehouseCode = freightDto.getWarehouseCode();
+		this.warehouseName = freightDto.getWarehouseName();
 		this.toProvince = freightDto.getToProvince();
 		this.toCity = freightDto.getToCity();
 		this.toArea = freightDto.getToArea();
@@ -251,9 +248,9 @@ public class FreightEntity implements Serializable {
 		return "FreightEntity{" +
 				"id=" + id +
 				", requestId='" + requestId + '\'' +
-				", fromProvince='" + fromProvince + '\'' +
-				", fromCity='" + fromCity + '\'' +
-				", fromArea='" + fromArea + '\'' +
+				", customerType='" + customerType + '\'' +
+				", warehouseCode='" + warehouseCode + '\'' +
+				", warehouseName='" + warehouseName + '\'' +
 				", toProvince='" + toProvince + '\'' +
 				", toCity='" + toCity + '\'' +
 				", toArea='" + toArea + '\'' +

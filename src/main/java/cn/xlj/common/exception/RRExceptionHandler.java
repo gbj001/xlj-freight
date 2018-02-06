@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
  * @date 2016年10月27日 下午10:16:19
  */
 @RestControllerAdvice
-public class RRExceptionHandler {
+public class RRExceptionHandler extends Throwable {
 	private Logger logger = LoggerFactory.getLogger(getClass());
 
 	/**

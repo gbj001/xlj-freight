@@ -7,9 +7,9 @@
     <resultMap type="cn.xlj.modules.freight.entity.FreightEntity" id="freightMap">
         <result property="id" column="id"/>
         <result property="requestId" column="request_id"/>
-        <result property="fromProvince" column="from_province"/>
-        <result property="fromCity" column="from_city"/>
-        <result property="fromArea" column="from_area"/>
+        <result property="customerType" column="customer_type"/>
+        <result property="warehouseCode" column="warehouse_code"/>
+        <result property="warehouseName" column="warehouse_name"/>
         <result property="toProvince" column="to_province"/>
         <result property="toCity" column="to_city"/>
         <result property="toArea" column="to_area"/>
@@ -54,9 +54,9 @@
 		insert into tb_freight
 		(
 			`request_id`, 
-			`from_province`,
-			`from_city`, 
-			`from_area`, 
+			`customer_type`,
+			`warehouse_code`,
+			`warehouse_name`,
 			`to_province`, 
 			`to_city`, 
 			`to_area`, 
@@ -71,9 +71,9 @@
 		values
 		(
 			#{requestId}, 
-			#{fromProvince},
-			#{fromCity}, 
-			#{fromArea}, 
+			#{customerType},
+			#{warehouseCode},
+			#{warehouseName},
 			#{toProvince}, 
 			#{toCity}, 
 			#{toArea}, 
@@ -91,9 +91,8 @@
 		update tb_freight 
 		<set>
 			<if test="requestId != null">`request_id` = #{requestId}, </if>
-			<if test="fromProvince != null">`from_province` = #{fromProvince}, </if>
-			<if test="fromCity != null">`from_city` = #{fromCity}, </if>
-			<if test="fromArea != null">`from_area` = #{fromArea}, </if>
+			<if test="customerType != null">`customer_type` = #{customerType}, </if>
+			<if test="warehouseCode != null">`warehouse_code` = #{warehouseCode}, </if>
 			<if test="toProvince != null">`to_province` = #{toProvince}, </if>
 			<if test="toCity != null">`to_city` = #{toCity}, </if>
 			<if test="toArea != null">`to_area` = #{toArea}, </if>

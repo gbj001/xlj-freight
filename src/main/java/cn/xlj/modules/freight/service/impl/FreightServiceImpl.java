@@ -1,20 +1,18 @@
 package cn.xlj.modules.freight.service.impl;
 
+import cn.xlj.modules.freight.dao.FreightDao;
 import cn.xlj.modules.freight.dao.FreightDetailDao;
 import cn.xlj.modules.freight.dto.FreightDto;
 import cn.xlj.modules.freight.entity.FreightDetailEntity;
+import cn.xlj.modules.freight.entity.FreightEntity;
+import cn.xlj.modules.freight.service.FreightService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.Random;
-
-import cn.xlj.modules.freight.dao.FreightDao;
-import cn.xlj.modules.freight.entity.FreightEntity;
-import cn.xlj.modules.freight.service.FreightService;
-import org.springframework.transaction.annotation.Transactional;
 
 
 @Service("freightService")

@@ -5,10 +5,9 @@ $(function () {
         colModel: [			
 			{ label: 'id', name: 'id', index: 'id', width: 50, key: true },
 			{ label: '请求ID', name: 'requestId', index: 'request_id', width: 80 }, 			
-			{ label: '运输始发地', editoptions:{name: 'fromCity', index: 'from_province'}, width: 80 },
-			{ label: '运输开始城市', name: 'fromCity', index: 'from_city', width: 80 },
-			{ label: '运输开始区县', name: 'fromArea', index: 'from_area', width: 80 },
-			{ label: '运输到达省份', name: 'toProvince', index: 'to_province', width: 80 }, 			
+			{ label: '客户类型', name: 'customerType', index: 'customer_type', width: 80 },
+			{ label: '发货仓库名称', name: 'warehouseName', index: 'warehouse_name', width: 80 },
+			{ label: '运输到达省份', name: 'toProvince', index: 'to_province', width: 80 },
 			{ label: '运输到达城市', name: 'toCity', index: 'to_city', width: 80 },
 			{ label: '运输到达区县', name: 'toArea', index: 'to_area', width: 80 },
 			{ label: '运输到达详细地址', name: 'address', index: 'address', width: 80 },

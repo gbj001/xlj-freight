@@ -9,9 +9,9 @@ public class FreightDto {
 
     private String requestId;
     private List<FreightDetailEntity> productItems;
-    private String fromProvince;
-    private String fromCity;
-    private String fromArea;
+    private String customerType;
+    private String warehouseCode;
+    private String warehouseName;
     private String toProvince;
     private String toCity;
     private String toArea;
@@ -33,28 +33,28 @@ public class FreightDto {
         this.productItems = productItems;
     }
 
-    public String getFromProvince() {
-        return fromProvince;
+    public String getCustomerType() {
+        return customerType;
     }
 
-    public void setFromProvince(String fromProvince) {
-        this.fromProvince = fromProvince;
+    public void setCustomerType(String customerType) {
+        this.customerType = customerType;
     }
 
-    public String getFromCity() {
-        return fromCity;
+    public String getWarehouseCode() {
+        return warehouseCode;
     }
 
-    public void setFromCity(String fromCity) {
-        this.fromCity = fromCity;
+    public void setWarehouseCode(String warehouseCode) {
+        this.warehouseCode = warehouseCode;
     }
 
-    public String getFromArea() {
-        return fromArea;
+    public String getWarehouseName() {
+        return warehouseName;
     }
 
-    public void setFromArea(String fromArea) {
-        this.fromArea = fromArea;
+    public void setWarehouseName(String warehouseName) {
+        this.warehouseName = warehouseName;
     }
 
     public String getToProvince() {
