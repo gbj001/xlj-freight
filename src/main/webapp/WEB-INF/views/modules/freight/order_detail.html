@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>订单明细表</title>
+<#include "/header.html">
+</head>
+<body>
+<div id="rrapp" v-cloak>
+	<div v-show="showList">
+		<div class="grid-btn">
+		</div>
+	    <table id="jqGrid"></table>
+	    <div id="jqGridPager"></div>
+    </div>
+</div>
+
+<script src="${request.contextPath}/statics/js/modules/freight/order_detail.js?_${.now?long}"></script>
+</body>
+</html>

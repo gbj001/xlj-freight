@@ -15,7 +15,5 @@ public class RedisTest {
     @Test
     public void test(){
         Random ran1 = new Random(100);
-        System.out.println(ran1.nextInt(100));
-        System.out.println(ran1.nextInt(100));
     }
 }

@@ -1,24 +1,24 @@
 package cn.xlj.modules.freight.controller;
 
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import cn.xlj.common.utils.PageUtils;
 import cn.xlj.common.utils.Query;
 import cn.xlj.common.utils.R;
+import cn.xlj.modules.freight.entity.OrderDetailEntity;
 import cn.xlj.modules.sys.entity.SysUserEntity;
+import net.sf.json.JSONObject;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
+import org.json.JSONString;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
-import cn.xlj.modules.freight.entity.FreightEntity;
-import cn.xlj.modules.freight.service.FreightService;
+import cn.xlj.modules.freight.entity.OrderEntity;
+import cn.xlj.modules.freight.service.OrderService;
 
 
 /**
@@ -32,7 +32,7 @@ import cn.xlj.modules.freight.service.FreightService;
 @RequestMapping("freight")
 public class FreightController {
 	@Autowired
-	private FreightService freightService;
+	private OrderService freightService;
 	
 	/**
 	 * 列表
@@ -43,7 +43,7 @@ public class FreightController {
 		//查询列表数据
         Query query = new Query(params);
 
-		List<FreightEntity> freightList = freightService.queryList(query);
+		List<OrderEntity> freightList = freightService.queryList(query);
 		int total = freightService.queryTotal(query);
 		
 		PageUtils pageUtil = new PageUtils(freightList, total, query.getLimit(), query.getPage());
@@ -58,7 +58,7 @@ public class FreightController {
 	@RequestMapping("/info/{id}")
 	@RequiresPermissions("freight:info")
 	public R info(@PathVariable("id") Long id){
-		FreightEntity freight = freightService.queryObject(id);
+		OrderEntity freight = freightService.queryObject(id);
 		
 		return R.ok().put("freight", freight);
 	}
@@ -68,7 +68,7 @@ public class FreightController {
 	 */
 	@RequestMapping("/save")
 	@RequiresPermissions("freight:save")
-	public R save(@RequestBody FreightEntity freight){
+	public R save(@RequestBody OrderEntity freight){
 		freightService.save(freight);
 		
 		return R.ok();
@@ -79,7 +79,7 @@ public class FreightController {
 	 */
 	@RequestMapping("/update")
 	@RequiresPermissions("freight:update")
-	public R update(@RequestBody FreightEntity freight){
+	public R update(@RequestBody OrderEntity freight){
 		String username = ((SysUserEntity) SecurityUtils.getSubject().getPrincipal()).getUsername();
 		freight.setUpdateUser(username);
 		freight.setUpdateTime(new Date());
@@ -99,5 +99,33 @@ public class FreightController {
 		
 		return R.ok();
 	}
-	
+
+	@RequestMapping("/list/detail/{orderId}")
+	public R orderDetailList(@PathVariable String orderId){
+		//查询订单详情列表数据
+		Map params  = new HashMap();
+		params.put("order_id",orderId);
+		params.put("page",1);
+		params.put("limit",10);
+		params.put("sidx","");
+		params.put("order","asc");
+		Query query = new Query(params);
+		List<OrderDetailEntity> orderEntityList = freightService.queryListByOrderId(query);
+		int totalCount = freightService.queryListCountByOrderId(query);
+
+		PageUtils pageUtil = new PageUtils(orderEntityList, totalCount, query.getLimit(), query.getPage());
+        //
+		////查询列表数据
+		//Map
+        //
+
+        //
+		//List<OrderEntity> freightList = freightService.queryList(query);
+		//int total = freightService.queryTotal(query);
+
+		//PageUtils pageUtil = new PageUtils(freightList, total, query.getLimit(), query.getPage());
+
+		return R.ok().put("pagedetail", pageUtil);
+	}
+
 }

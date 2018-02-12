@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="cn.xlj.modules.freight.dao.FreightDao">
+<mapper namespace="cn.xlj.modules.freight.dao.OrderDao">
 
 	<!-- 可根据自己的需求，是否要使用 -->
-    <resultMap type="cn.xlj.modules.freight.entity.FreightEntity" id="freightMap">
+    <resultMap type="cn.xlj.modules.freight.entity.OrderEntity" id="orderMap">
         <result property="id" column="id"/>
         <result property="requestId" column="request_id"/>
         <result property="customerType" column="customer_type"/>
@@ -22,17 +22,26 @@
         <result property="updateTime" column="update_time"/>
     </resultMap>
 
-	<select id="queryObject" resultType="cn.xlj.modules.freight.entity.FreightEntity">
-		select * from tb_freight where id = #{value}
+	<select id="queryObject" resultType="cn.xlj.modules.freight.entity.OrderEntity">
+		select * from tb_order where id = #{value}
 	</select>
 
 
-	<select id="queryByRequestId" parameterType="string" resultType="cn.xlj.modules.freight.entity.FreightEntity">
-		select * from tb_freight where request_id = #{requestId}
+	<select id="queryByRequestId" parameterType="string" resultType="cn.xlj.modules.freight.entity.OrderEntity">
+		select * from tb_order where request_id = #{requestId}
 	</select>
 
-	<select id="queryList" resultType="cn.xlj.modules.freight.entity.FreightEntity">
-		select * from tb_freight
+	<select id="queryList" resultType="cn.xlj.modules.freight.entity.OrderEntity">
+		select * from tb_order
+		<where>
+			<if test="customerType != null and customerType.trim() != ''">
+				and `customer_type` = #{customerType}
+			</if>
+			<if test="warehouseName != null and warehouseName.trim() != ''">
+				and `warehouse_name` like concat('%',#{warehouseName},'%')
+			</if>
+		</where>
+
         <choose>
             <when test="sidx != null and sidx.trim() != ''">
                 order by ${sidx} ${order}
@@ -47,11 +56,11 @@
 	</select>
 	
  	<select id="queryTotal" resultType="int">
-		select count(*) from tb_freight 
+		select count(*) from tb_order 
 	</select>
 	 
-	<insert id="save" parameterType="cn.xlj.modules.freight.entity.FreightEntity" useGeneratedKeys="true" keyProperty="id">
-		insert into tb_freight
+	<insert id="save" parameterType="cn.xlj.modules.freight.entity.OrderEntity" useGeneratedKeys="true" keyProperty="id">
+		insert into tb_order
 		(
 			`request_id`, 
 			`customer_type`,
@@ -87,8 +96,8 @@
 		)
 	</insert>
 	 
-	<update id="update" parameterType="cn.xlj.modules.freight.entity.FreightEntity">
-		update tb_freight 
+	<update id="update" parameterType="cn.xlj.modules.freight.entity.OrderEntity">
+		update tb_order 
 		<set>
 			<if test="requestId != null">`request_id` = #{requestId}, </if>
 			<if test="customerType != null">`customer_type` = #{customerType}, </if>
@@ -106,11 +115,11 @@
 	</update>
 	
 	<delete id="delete">
-		delete from tb_freight where id = #{value}
+		delete from tb_order where id = #{value}
 	</delete>
 	
 	<delete id="deleteBatch">
-		delete from tb_freight where id in 
+		delete from tb_order where id in 
 		<foreach item="id" collection="array" open="(" separator="," close=")">
 			#{id}
 		</foreach>

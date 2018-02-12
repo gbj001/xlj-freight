@@ -8,15 +8,24 @@
 <div id="rrapp" v-cloak>
 	<div v-show="showList">
 		<div class="grid-btn">
+			<div class="form-group col-sm-2">
+				<input type="text" class="form-control" v-model="q.customerType" @keyup.enter="query" placeholder="客户类型">
+			</div>
+			<div class="form-group col-sm-2">
+				<input type="text" class="form-control" v-model="q.warehouseName" @keyup.enter="query" placeholder="发货仓名称">
+			</div>
+			<a class="btn btn-default" @click="query">查询</a>
+
+
 			<#if shiro.hasPermission("freight:save")>
             <a class="btn btn-primary" @click="add"><i class="fa fa-plus"></i>&nbsp;新增</a>
 			</#if>
 			<#if shiro.hasPermission("freight:update")>
             <a class="btn btn-primary" @click="update"><i class="fa fa-pencil-square-o"></i>&nbsp;修改</a>
 			</#if>
-			<#if shiro.hasPermission("freight:delete")>
-            <a class="btn btn-primary" @click="del"><i class="fa fa-trash-o"></i>&nbsp;删除</a>
-			</#if>
+			<!--<#if shiro.hasPermission("freight:delete")>-->
+            <!--<a class="btn btn-primary" @click="del"><i class="fa fa-trash-o"></i>&nbsp;删除</a>-->
+			<!--</#if>-->
 		</div>
 	    <table id="jqGrid"></table>
 	    <div id="jqGridPager"></div>
@@ -67,6 +76,6 @@
 	</div>
 </div>
 
-<script src="${request.contextPath}/statics/js/modules/freight/freight.js?_${.now?long}"></script>
+<script src="${request.contextPath}/statics/js/modules/freight/order.js?_${.now?long}"></script>
 </body>
 </html>

@@ -1,6 +1,6 @@
 package cn.xlj.modules.freight.dao;
 
-import cn.xlj.modules.freight.entity.FreightEntity;
+import cn.xlj.modules.freight.entity.OrderEntity;
 import cn.xlj.modules.sys.dao.BaseDao;
 import org.springframework.data.repository.query.Param;
 
@@ -11,8 +11,8 @@ import org.springframework.data.repository.query.Param;
  * @email gengbeijun@xinliangjishipin.com
  * @date 2018-01-24 15:44:20
  */
-public interface FreightDao extends BaseDao<FreightEntity> {
+public interface OrderDao extends BaseDao<OrderEntity> {
 
-    FreightEntity queryByRequestId(@Param(value="requestId") String requestId);
+    OrderEntity queryByRequestId(@Param(value="requestId") String requestId);
 	
 }

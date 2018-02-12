@@ -10,37 +10,37 @@ package cn.xlj.common.exception;
 public class RRException extends RuntimeException {
 	private static final long serialVersionUID = 1L;
 	
-    private String msg;
+    private String message;
     private int code = 500;
     
-    public RRException(String msg) {
-		super(msg);
-		this.msg = msg;
+    public RRException(String message) {
+		super(message);
+		this.message = message;
 	}
 	
-	public RRException(String msg, Throwable e) {
-		super(msg, e);
-		this.msg = msg;
+	public RRException(String message, Throwable e) {
+		super(message, e);
+		this.message = message;
 	}
 	
-	public RRException(String msg, int code) {
-		super(msg);
-		this.msg = msg;
+	public RRException(String message, int code) {
+		super(message);
+		this.message = message;
 		this.code = code;
 	}
 	
-	public RRException(String msg, int code, Throwable e) {
-		super(msg, e);
-		this.msg = msg;
+	public RRException(String message, int code, Throwable e) {
+		super(message, e);
+		this.message = message;
 		this.code = code;
 	}
 
 	public String getMsg() {
-		return msg;
+		return message;
 	}
 
-	public void setMsg(String msg) {
-		this.msg = msg;
+	public void setMsg(String message) {
+		this.message = message;
 	}
 
 	public int getCode() {

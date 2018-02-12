@@ -125,3 +125,9 @@ INSERT INTO `sys_menu` (`menu_id`, `parent_id`, `name`, `url`, `perms`, `type`, 
 INSERT INTO `sys_dept` (`dept_id`, `parent_id`, `name`, `order_num`, `del_flag`) VALUES ('1', '0', '信良记食品科技有限公司', '0', '0');
 INSERT INTO `sys_dept` (`dept_id`, `parent_id`, `name`, `order_num`, `del_flag`) VALUES ('2', '1', '技术部', '1', '0');
 INSERT INTO `sys_dept` (`dept_id`, `parent_id`, `name`, `order_num`, `del_flag`) VALUES ('3', '1', '销售部', '2', '0');
+
+
+INSERT INTO `sys_config` (`key`, `value`, `status`, `remark`) VALUES ('MINNUMBER', '10', '1', '同城最小免邮箱数');
+INSERT INTO `sys_config` (`key`, `value`, `status`, `remark`) VALUES ('MINORDERAMOUNT', '400000', '1', '外阜最小免邮订单金额');
+
+

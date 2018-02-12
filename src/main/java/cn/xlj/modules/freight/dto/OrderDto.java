@@ -1,14 +1,13 @@
 package cn.xlj.modules.freight.dto;
 
-import cn.xlj.modules.freight.entity.FreightDetailEntity;
-import cn.xlj.modules.freight.entity.FreightEntity;
+import cn.xlj.modules.freight.entity.OrderDetailEntity;
 
 import java.util.List;
 
-public class FreightDto {
+public class OrderDto {
 
     private String requestId;
-    private List<FreightDetailEntity> productItems;
+    private List<OrderDetailEntity> productItems;
     private String customerType;
     private String warehouseCode;
     private String warehouseName;
@@ -25,11 +24,11 @@ public class FreightDto {
         this.requestId = requestId;
     }
 
-    public List<FreightDetailEntity> getProductItems() {
+    public List<OrderDetailEntity> getProductItems() {
         return productItems;
     }
 
-    public void setProductItems(List<FreightDetailEntity> productItems) {
+    public void setProductItems(List<OrderDetailEntity> productItems) {
         this.productItems = productItems;
     }
 

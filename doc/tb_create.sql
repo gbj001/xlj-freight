@@ -1,9 +1,9 @@
--- 运费表
-CREATE TABLE `tb_freight` (
+-- 订单表
+CREATE TABLE `tb_order` (
   `id` bigint NOT NULL AUTO_INCREMENT,
   `request_id` VARCHAR(20) NOT NULL COMMENT '请求ID',
   `customer_type` CHAR(2) COMMENT '客户类型',
-  `warehouse_code` VARCHAR(10) COMMENT '发货仓编码',
+  `warehouse_code` VARCHAR(20) COMMENT '发货仓编码',
   `warehouse_name` VARCHAR(50) COMMENT '发货仓名称',
   `to_province` VARCHAR(50) COMMENT '运输到达省份',
   `to_city` VARCHAR(50) COMMENT '运输到达城市',
@@ -17,13 +17,13 @@ CREATE TABLE `tb_freight` (
   `update_time` DATETIME COMMENT '修改时间',
   PRIMARY KEY (`id`),
   UNIQUE `request_id_uq` (`request_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='运费数据表';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='订单数据表';
 
 
--- 运费表明细
-CREATE TABLE `tb_freight_detail` (
+-- 订单明细表
+CREATE TABLE `tb_order_detail` (
   `id` bigint NOT NULL AUTO_INCREMENT,
-  `freight_id` bigint NOT NULL COMMENT '运费表ID',
+  `order_id` bigint NOT NULL COMMENT '运费表ID',
   `sku` VARCHAR(20) COMMENT '商品sku',
   `is_gift` SMALLINT(1) COMMENT '是否赠品' DEFAULT 0,
   `name` VARCHAR(50) COMMENT '商品名称',
@@ -38,7 +38,7 @@ CREATE TABLE `tb_freight_detail` (
   `update_user` VARCHAR(50) COMMENT '修改人',
   `update_time` DATETIME COMMENT '修改时间',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='运费数据明细表';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='订单数据明细表';
 
 
 

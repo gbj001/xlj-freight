@@ -1,6 +1,6 @@
 package cn.xlj.modules.freight.entity;
 
-import cn.xlj.modules.freight.dto.FreightDto;
+import cn.xlj.modules.freight.dto.OrderDto;
 
 import java.io.Serializable;
 import java.util.Date;
@@ -14,7 +14,7 @@ import java.util.Date;
  * @email gengbeijun@xinliangjishipin.com
  * @date 2018-01-24 15:44:20
  */
-public class FreightEntity implements Serializable {
+public class OrderEntity implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
 	//
@@ -226,12 +226,12 @@ public class FreightEntity implements Serializable {
 		return updateTime;
 	}
 
-	public FreightEntity(){
+	public OrderEntity(){
 
 	}
 
 
-	public FreightEntity(FreightDto freightDto){
+	public OrderEntity(OrderDto freightDto){
 		this.requestId = freightDto.getRequestId();
 		this.customerType = freightDto.getCustomerType();
 		this.warehouseCode = freightDto.getWarehouseCode();
@@ -245,7 +245,7 @@ public class FreightEntity implements Serializable {
 
 	@Override
 	public String toString() {
-		return "FreightEntity{" +
+		return "OrderEntity{" +
 				"id=" + id +
 				", requestId='" + requestId + '\'' +
 				", customerType='" + customerType + '\'' +

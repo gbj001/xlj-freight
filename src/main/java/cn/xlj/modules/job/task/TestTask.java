@@ -1,9 +1,6 @@
 package cn.xlj.modules.job.task;
 
-import cn.xlj.modules.sys.entity.SysUserEntity;
 import cn.xlj.modules.sys.service.SysUserService;
-import org.apache.commons.lang.builder.ToStringBuilder;
-import org.apache.shiro.SecurityUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,8 +30,7 @@ public class TestTask {
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
-		System.out.println("");
-		
+
 	}
 	
 	

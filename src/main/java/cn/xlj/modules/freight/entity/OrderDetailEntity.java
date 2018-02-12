@@ -1,7 +1,5 @@
 package cn.xlj.modules.freight.entity;
 
-import cn.xlj.modules.freight.dto.FreightDto;
-
 import java.io.Serializable;
 import java.util.Date;
 
@@ -13,13 +11,13 @@ import java.util.Date;
  * @email gengbeijun@xinliangjishipin.com
  * @date 2018-01-24 15:44:20
  */
-public class FreightDetailEntity implements Serializable {
+public class OrderDetailEntity implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
 	//
 	private Long id;
 	//请求ID
-	private long freightId;
+	private Long orderId;
 	//商品sku
 	private String sku;
 	//是否赠品
@@ -59,12 +57,12 @@ public class FreightDetailEntity implements Serializable {
 		this.id = id;
 	}
 
-	public long getFreightId() {
-		return freightId;
+	public Long getOrderId() {
+		return orderId;
 	}
 
-	public void setFreightId(long freightId) {
-		this.freightId = freightId;
+	public void setOrderId(Long orderId) {
+		this.orderId = orderId;
 	}
 
 	public String getSku() {
@@ -173,9 +171,9 @@ public class FreightDetailEntity implements Serializable {
 
 	@Override
 	public String toString() {
-		return "FreightDetailEntity{" +
+		return "OrderDetailEntity{" +
 				"id=" + id +
-				", freightId='" + freightId + '\'' +
+				", orderId='" + orderId + '\'' +
 				", sku='" + sku + '\'' +
 				", isGift=" + isGift +
 				", name='" + name + '\'' +

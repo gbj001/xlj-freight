@@ -72,8 +72,6 @@ public class SysLoginController {
 		}catch (AuthenticationException e) {
 			return R.error("账户验证失败");
 		}
-
-		System.out.println(R.ok());
 		return R.ok();
 	}
 	

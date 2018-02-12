@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="cn.xlj.modules.freight.dao.FreightDetailDao">
+<mapper namespace="cn.xlj.modules.freight.dao.OrderDetailDao">
 
 	<!-- 可根据自己的需求，是否要使用 -->
-    <resultMap type="cn.xlj.modules.freight.entity.FreightDetailEntity" id="freightDetailMap">
+    <resultMap type="cn.xlj.modules.freight.entity.OrderDetailEntity" id="orderDetailMap">
         <result property="id" column="id"/>
-        <result property="freightId" column="freight_id"/>
+        <result property="orderId" column="order_id"/>
         <result property="sku" column="sku"/>
         <result property="isGift" column="is_gift"/>
         <result property="name" column="name"/>
@@ -22,23 +22,27 @@
         <result property="updateTime" column="update_time"/>
     </resultMap>
 
-	<select id="queryObject" resultType="cn.xlj.modules.freight.entity.FreightDetailEntity">
-		select * from tb_freight_detail where id = #{value}
+	<select id="queryObject" resultType="cn.xlj.modules.freight.entity.OrderDetailEntity">
+		select * from tb_order_detail where id = #{value}
 	</select>
 
-	<select id="queryListByFreightId" parameterType="string" resultType="cn.xlj.modules.freight.entity.FreightDetailEntity">
-		select * from tb_freight_detail
-       	where freight_id = #{freightId}
+	<select id="queryListByOrderId" parameterType="map" resultType="cn.xlj.modules.freight.entity.OrderDetailEntity">
+		select * from tb_order_detail
+       	where order_id = #{orderId}
+	</select>
+
+	<select id="queryListCountByOrderId" parameterType="map" resultType="int">
+		select count(*) from tb_order_detail where order_id = #{orderId}
 	</select>
 	
  	<select id="queryTotal" resultType="int">
-		select count(*) from tb_freight_detail
+		select count(*) from tb_order_detail
 	</select>
 	 
-	<insert id="save" parameterType="cn.xlj.modules.freight.entity.FreightDetailEntity" useGeneratedKeys="true" keyProperty="id">
-		insert into tb_freight_detail
+	<insert id="save" parameterType="cn.xlj.modules.freight.entity.OrderDetailEntity" useGeneratedKeys="true" keyProperty="id">
+		insert into tb_order_detail
 		(
-			`freight_id`,
+			`order_id`,
 			`sku`,
 			`is_gift`,
 			`name`,
@@ -55,7 +59,7 @@
 		)
 		values
 		(
-			#{freightId},
+			#{orderId},
 			#{sku},
 			#{isGift},
 			#{name},
