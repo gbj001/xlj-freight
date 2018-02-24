@@ -102,7 +102,7 @@ public class FreightServiceImpl implements OrderService {
         //大客户、散户、电商
         if (orderDto != null && orderDto.getCustomerType().equals("1")) {
             //是否同城订单
-            if (compareFromCityToCity(orderDto.getWarehouseCode(), orderDto.getToProvince(), orderDto.getToCity(), orderDto.getToArea())) {
+            if (orderDto.isSameCity()) {
                 //按照订购箱数计费
                 fee = calculateTotalNumber(orderDto.getProductItems()) >= Integer.parseInt(sysConfigDao.queryByKey("MINNUMBER").getValue()) ? "0" : "90";
             } else {
@@ -114,7 +114,7 @@ public class FreightServiceImpl implements OrderService {
         //直销客户
         if (orderDto != null && orderDto.getCustomerType().equals("2")) {
             //是否同城订单
-            if (compareFromCityToCity(orderDto.getWarehouseCode(), orderDto.getToProvince(), orderDto.getToCity(), orderDto.getToArea())) {
+            if (orderDto.isSameCity()) {
                 //按照订购箱数计算
                 if (calculateTotalNumber(orderDto.getProductItems()) < 5) {
                     fee = "90";
@@ -144,11 +144,11 @@ public class FreightServiceImpl implements OrderService {
         return orderDetailDao.queryListCountByOrderId(map);
     }
 
-    private boolean compareFromCityToCity(String fromWarehouseCode, String toProvince, String toCity, String toArea) {
-        String toDestination = toProvince + "_" + toCity + "_" + toArea;
-        return toDestination.contains(fromWarehouseCode);
-
-    }
+    //private boolean compareFromCityToCity(String fromWarehouseCode, String toProvince, String toCity, String toArea) {
+    //    String toDestination = toProvince + "_" + toCity + "_" + toArea;
+    //    return toDestination.contains(fromWarehouseCode);
+    //
+    //}
 
     private int calculateTotalNumber(List<OrderDetailEntity> orderDetailEntityList) {
         int totalNumber = 0;

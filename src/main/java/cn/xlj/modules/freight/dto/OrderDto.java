@@ -15,6 +15,7 @@ public class OrderDto {
     private String toCity;
     private String toArea;
     private String address;
+    private boolean isSameCity;
 
     public String getRequestId() {
         return requestId;
@@ -86,5 +87,29 @@ public class OrderDto {
 
     public void setAddress(String address) {
         this.address = address;
+    }
+
+    public boolean isSameCity() {
+        return isSameCity;
+    }
+
+    public void setSameCity(boolean sameCity) {
+        isSameCity = sameCity;
+    }
+
+    @Override
+    public String toString() {
+        return "OrderDto{" +
+                "requestId='" + requestId + '\'' +
+                ", productItems=" + productItems +
+                ", customerType='" + customerType + '\'' +
+                ", warehouseCode='" + warehouseCode + '\'' +
+                ", warehouseName='" + warehouseName + '\'' +
+                ", toProvince='" + toProvince + '\'' +
+                ", toCity='" + toCity + '\'' +
+                ", toArea='" + toArea + '\'' +
+                ", address='" + address + '\'' +
+                ", isSameCity=" + isSameCity +
+                '}';
     }
 }
