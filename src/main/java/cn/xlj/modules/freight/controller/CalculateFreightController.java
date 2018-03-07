@@ -44,7 +44,8 @@ public class CalculateFreightController {
 
             //2、根据规则计算出运费更新运费表
             String fee = freightService.calculateFee(orderDto);
-            if (StringUtils.isNotEmpty(fee)) {
+            String noFee = "-1";
+            if (!fee.equals(noFee)) {
                 OrderEntity freightEntity = freightService.queryByRequestId(orderDto.getRequestId());
                 freightEntity.setExpectFee(Double.parseDouble(fee));
                 freightService.update(freightEntity);
@@ -58,7 +59,7 @@ public class CalculateFreightController {
                 map.put("message", "请人工计算运费");
                 map.put("successful", true);
                 map.put("code", "400");
-                map.put("freight_fee", null);
+                map.put("freight_fee", noFee);
             }
         }catch(Exception e){
             logger.error(e.getMessage());

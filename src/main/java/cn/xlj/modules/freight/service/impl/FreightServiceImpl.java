@@ -98,7 +98,9 @@ public class FreightServiceImpl implements OrderService {
 
     @Override
     public String calculateFee(OrderDto orderDto) {
-        String fee = null;
+        //-1 代表无法计算运费
+        String noFee = "-1";
+        String fee = "-1";
         //大客户、散户、电商
         if (orderDto != null && orderDto.getCustomerType().equals("1")) {
             //是否同城订单
@@ -107,7 +109,7 @@ public class FreightServiceImpl implements OrderService {
                 fee = calculateTotalNumber(orderDto.getProductItems()) >= Integer.parseInt(sysConfigDao.queryByKey("MINNUMBER").getValue()) ? "0" : "90";
             } else {
                 //外阜订单按照金额计费
-                fee = calculateTotalOrderAmount(orderDto.getProductItems()) > Integer.parseInt(sysConfigDao.queryByKey("MINORDERAMOUNT").getValue()) ? "0" : "";
+                fee = calculateTotalOrderAmount(orderDto.getProductItems()) > Integer.parseInt(sysConfigDao.queryByKey("MINORDERAMOUNT").getValue()) ? "0" : noFee;
             }
         }
 
@@ -123,11 +125,11 @@ public class FreightServiceImpl implements OrderService {
                 } else if (calculateTotalWeight(orderDto.getProductItems()) >= 1 * 1000 * 1000) {
                     fee = "0";
                 } else {
-                    fee = "";
+                    fee = noFee;
                 }
             } else {
                 //外阜订单按照金额计费
-                fee = calculateTotalWeight(orderDto.getProductItems()) > 2 * 1000 * 1000 ? "0" : "";
+                fee = calculateTotalWeight(orderDto.getProductItems()) > 2 * 1000 * 1000 ? "0" : noFee;
             }
         }
 
