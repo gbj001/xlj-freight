@@ -33,6 +33,8 @@ public class OrderEntity implements Serializable {
 	private String toCity;
 	//运输到达区县
 	private String toArea;
+	//是否同城
+	private boolean isSameCity;
 	//运输到达详细地址
 	private String address;
 	//系统计算运费
@@ -142,8 +144,23 @@ public class OrderEntity implements Serializable {
 		return toArea;
 	}
 	/**
+	 * 获取：是否同城
+	 */
+	public boolean isSameCity() {
+		return isSameCity;
+	}
+	/**
+	 * 设置：是否同城
+	 */
+	public void setSameCity(boolean sameCity) {
+		isSameCity = sameCity;
+	}
+
+	/**
 	 * 设置：运输到达详细地址
 	 */
+
+
 	public void setAddress(String address) {
 		this.address = address;
 	}
@@ -239,6 +256,7 @@ public class OrderEntity implements Serializable {
 		this.toProvince = freightDto.getToProvince();
 		this.toCity = freightDto.getToCity();
 		this.toArea = freightDto.getToArea();
+		this.isSameCity = freightDto.isSameCity();
 		this.address = freightDto.getAddress();
 		this.createTime = new Date();
 	}
@@ -254,6 +272,7 @@ public class OrderEntity implements Serializable {
 				", toProvince='" + toProvince + '\'' +
 				", toCity='" + toCity + '\'' +
 				", toArea='" + toArea + '\'' +
+				", isSameCity='" + isSameCity + '\'' +
 				", address='" + address + '\'' +
 				", expectFee=" + expectFee +
 				", actualFee=" + actualFee +

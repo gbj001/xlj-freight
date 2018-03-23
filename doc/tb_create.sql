@@ -11,6 +11,7 @@ CREATE TABLE `tb_order` (
   `address` VARCHAR(50) COMMENT '运输到达详细地址',
   `expect_fee` DOUBLE(10,2) COMMENT '系统计算运费',
   `actual_fee` DOUBLE(10,2) COMMENT '实际运费',
+  `is_same_city` TINYINT(1) COMMENT '是否同城' DEFAULT 0,
   `create_user` VARCHAR(50) NOT NULL DEFAULT 'system' COMMENT '创建人',
   `create_time` DATETIME COMMENT '创建时间',
   `update_user` VARCHAR(50) COMMENT '修改人',

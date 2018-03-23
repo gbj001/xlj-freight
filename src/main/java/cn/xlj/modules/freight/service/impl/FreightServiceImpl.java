@@ -113,7 +113,7 @@ public class FreightServiceImpl implements OrderService {
             }
         }
 
-        //直销客户
+        //分销客户
         if (orderDto != null && orderDto.getCustomerType().equals("2")) {
             //是否同城订单
             if (orderDto.isSameCity()) {

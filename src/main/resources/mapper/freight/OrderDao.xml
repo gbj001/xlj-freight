@@ -13,6 +13,7 @@
         <result property="toProvince" column="to_province"/>
         <result property="toCity" column="to_city"/>
         <result property="toArea" column="to_area"/>
+        <result property="isSameCity" column="is_same_city"/>
         <result property="address" column="address"/>
         <result property="expectFee" column="expect_fee"/>
         <result property="actualFee" column="actual_fee"/>
@@ -69,7 +70,8 @@
 			`to_province`, 
 			`to_city`, 
 			`to_area`, 
-			`address`, 
+			`is_same_city`,
+			`address`,
 			`expect_fee`, 
 			`actual_fee`, 
 			`create_user`, 
@@ -86,7 +88,8 @@
 			#{toProvince}, 
 			#{toCity}, 
 			#{toArea}, 
-			#{address}, 
+			#{isSameCity},
+			#{address},
 			#{expectFee}, 
 			#{actualFee}, 
 			'system',
@@ -105,6 +108,7 @@
 			<if test="toProvince != null">`to_province` = #{toProvince}, </if>
 			<if test="toCity != null">`to_city` = #{toCity}, </if>
 			<if test="toArea != null">`to_area` = #{toArea}, </if>
+			<if test="isSameCity != null">`is_same_city` = #{isSameCity}, </if>
 			<if test="address != null">`address` = #{address}, </if>
 			<if test="expectFee != null">`expect_fee` = #{expectFee}, </if>
 			<if test="actualFee != null">`actual_fee` = #{actualFee}, </if>
