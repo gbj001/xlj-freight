@@ -29,7 +29,7 @@ public class OrderDetailEntity implements Serializable {
 	//商品数量
 	private Integer number;
 	//单个商品重量
-	private Integer weight;
+	private String weight;
 	//商品高度
 	private String width;
 	//运输开始省份
@@ -105,11 +105,11 @@ public class OrderDetailEntity implements Serializable {
 		this.number = number;
 	}
 
-	public Integer getWeight() {
+	public String getWeight() {
 		return weight;
 	}
 
-	public void setWeight(Integer weight) {
+	public void setWeight(String weight) {
 		this.weight = weight;
 	}
 

@@ -10,11 +10,14 @@ import cn.xlj.common.utils.Query;
 import cn.xlj.common.utils.R;
 import cn.xlj.modules.freight.entity.OrderDetailEntity;
 import cn.xlj.modules.sys.entity.SysUserEntity;
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import net.sf.json.JSONObject;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.json.JSONString;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.annotation.Order;
 import org.springframework.web.bind.annotation.*;
 
 import cn.xlj.modules.freight.entity.OrderEntity;
@@ -42,8 +45,10 @@ public class FreightController {
 	public R list(@RequestParam Map<String, Object> params){
 		//查询列表数据
         Query query = new Query(params);
-
+		PageHelper.startPage(2,3);
 		List<OrderEntity> freightList = freightService.queryList(query);
+		PageInfo<OrderEntity> pageInfo = new PageInfo<>(freightList);
+
 		int total = freightService.queryTotal(query);
 		
 		PageUtils pageUtil = new PageUtils(freightList, total, query.getLimit(), query.getPage());

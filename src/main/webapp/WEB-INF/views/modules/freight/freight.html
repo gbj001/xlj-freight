@@ -20,7 +20,7 @@
 			<#if shiro.hasPermission("freight:save")>
             <a class="btn btn-primary" @click="add"><i class="fa fa-plus"></i>&nbsp;新增</a>
 			</#if>
-			<#if shiro.hasPermission("freight:update")>
+			<#if shiro.hasPermission("FREIGHT:UPDATE")>
             <a class="btn btn-primary" @click="update"><i class="fa fa-pencil-square-o"></i>&nbsp;修改</a>
 			</#if>
 			<!--<#if shiro.hasPermission("freight:delete")>-->
