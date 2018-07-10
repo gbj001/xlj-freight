@@ -129,8 +129,15 @@ public class FreightServiceImpl implements OrderService {
                     fee = noFee;
                 }
             } else {
-                //外阜订单按照金额计费
-                fee = calculateTotalWeight(orderDto.getProductItems()) > 2 * 1000 ? "0" : noFee;
+                //北京市外阜
+                if(orderDto.getToProvince().equals("110000")){
+                    fee = calculateTotalWeight(orderDto.getProductItems()) < 2 * 1000 ? "110" : "0";
+                }
+                else{
+                    //外阜订单按订单重量计费
+                    fee = calculateTotalWeight(orderDto.getProductItems()) >= 2 * 1000 ? "0" : noFee;
+                }
+
             }
         }
 
@@ -187,7 +194,7 @@ public class FreightServiceImpl implements OrderService {
         }
         return totalWeight;
     }
-    
+
     private Map<String, String> materialMap(){
         Map materialMap = new HashMap();
         materialMap.put("W000116","1/60");
